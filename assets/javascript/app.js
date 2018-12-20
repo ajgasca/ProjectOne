@@ -48,7 +48,7 @@ $(document).ready(function() {
         //$(`#jobs-view`).empty();
 
         //let job = $(this).attr(`data-name`)
-        let queryURL = `https://authenticjobs.com/api/?api_key=25915f6b6bd9671779f4cb0d43be8b66&format=json&method=aj.jobs.search&category=3&perpage=30`;
+        let queryURL = `https://authenticjobs.com/api/?api_key=25915f6b6bd9671779f4cb0d43be8b66&format=json&method=aj.jobs.search&category=4&perpage=30`;
         //`https://data.usajobs.gov/api/search?JobCategoryCode=2200&Keyword=Web Development`
         
         //`https://api.github.com/?access_token=2d5c338354b50de33dd037057119f477b4d6d73a`
@@ -75,7 +75,7 @@ $(document).ready(function() {
                 // $(`#job-description`).append(`${response.listings.listing[i].type.name}<br>`);
                 // $(`#tagline`).append(`${response.listings.listing[i].company.tagline}<br>`);
 
-                let dataRow = `<tr><td>${response.listings.listing[i].company.name}</td><td>${response.listings.listing[i].company.location.name}</td><td>${response.listings.listing[i].title}</td><td>${response.listings.listing[i].type.name}</td><td>${response.listings.listing[i].company.tagline}</td></tr><br>`;
+                let dataRow = `<tr><td>${response.listings.listing[i].company.name}</td><td>${response.listings.listing[i].company.location.name}</td><td>${response.listings.listing[i].title}</td><td>${response.listings.listing[i].type.name}</td><td>${response.listings.listing[i].company.tagline}</td><td><button class="bg-info" id="specific-job">Find Out More</button></td></tr>`;
 
                 $(`#job-info`).append(dataRow);
         }
