@@ -13,18 +13,44 @@ $(document).ready(function() {
     // Create a variable to reference the database
     const database = firebase.database();
 
-
+    // Capture Button Click
+    $("#add-search").on("click", function(event) {
+        // Don't refresh the page!
+        event.preventDefault();
+        
+        // Stores data for the most recent train
+        let keyword = $(`#keyword-input`).val().trim();
+            // QUESTION????????????????????????????????????????????????????
+            // May need to do a split here to allow for multiple keywords??
+        let location = $(`#location-input`).val().trim();
+        let jobType = $(`#job-input`).val().trim();
+        let company = $(`#company-input`).val().trim();
+        
+        // Provides initial data to Firebase database
+        database.ref().push({
+            keyword: keyword,
+            location: location,
+            jobType: jobType,
+            company: company,
+            dateAdded: firebase.database.ServerValue.TIMESTAMP
+        }); // Closes database.ref.push function
+        
+        $(`#keyword-input`).val(``);
+        $(`#location-input`).val(``);
+        $(`#job-input`).val(``)
+        $(`#company-input`).val(``)
+    }); // Closes on-click function
 
 
 
     // displayJobs function re-renders the HTML to display the appropriate content, creates API call
     function displayJobs() {
-        $(`#jobs-view`).empty();
+        //$(`#jobs-view`).empty();
 
-        let job = $(this).attr(`data-name`)
-        let queryURL = `https://authenticjobs.com/api/?api_key=25915f6b6bd9671779f4cb0d43be8b66&method=aj.${pass in search data here}`;
+        //let job = $(this).attr(`data-name`)
+        let queryURL = `https://authenticjobs.com/api/?api_key=25915f6b6bd9671779f4cb0d43be8b66&format=json&method=aj.jobs.getLocations`;
                     // Job (aj.jobs.get)
-                    // Job Search (aj.jobs.search)
+                    // Job Search (aj.jobs.search)  
                     // Companies (aj.jobs.getCompanies)
                     // Locations (aj.jobs.getLocations)
 
@@ -38,7 +64,7 @@ $(document).ready(function() {
 
     } // Closes displayJobs function
 
-
+    displayJobs();
 
 
 
