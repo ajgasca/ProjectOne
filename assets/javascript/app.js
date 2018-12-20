@@ -49,17 +49,18 @@ $(document).ready(function() {
 
         //let job = $(this).attr(`data-name`)
         let queryURL = `https://authenticjobs.com/api/?api_key=25915f6b6bd9671779f4cb0d43be8b66&format=json&method=aj.jobs.search&category=4&perpage=30`;
-        //`https://data.usajobs.gov/api/search?JobCategoryCode=2200&Keyword=Web Development`
+        
+        //`https://data.usajobs.gov/api/search?JobCategoryCode=2200&Keyword=web develop&PositionSchedule=1&WhoMayApply=public&HiringPath=public;graduates&ResultsPerPage=15`
         
         //`https://api.github.com/?access_token=2d5c338354b50de33dd037057119f477b4d6d73a`
         //let host = `data.usajobs.gov`;
         //let userAgent = `ethantatum81@gmail.com`;
-        //let authKey = `h1Z1jDLKTLTCLTiejmf6tA+zXLn1r6tZq9O1nEZZdV4=`
+        //let authKey = `h1Z1jDLKTLTCLTiejmf6tA+zXLn1r6tZq9O1nEZZdV4=` 
 
         // Creates AJAX call for the specific toon button being clicked
         $.ajax({
             url: queryURL,
-            method: `GET`
+            method: `GET`,
             //headers: {
                 //"Host": host,
                 //"User-Agent": userAgent,
@@ -69,13 +70,16 @@ $(document).ready(function() {
             console.log(response);
             for(let i = 0; i < response.listings.listing.length; i++) {
             
-                // $(`#company-name`).append(`${response.listings.listing[i].company.name}<br>`);
-                // $(`#company-location`).append(`${response.listings.listing[i].company.location.name}<br>`);
-                // $(`#job-type`).append(`${response.listings.listing[i].title}<br>`);
-                // $(`#job-description`).append(`${response.listings.listing[i].type.name}<br>`);
-                // $(`#tagline`).append(`${response.listings.listing[i].company.tagline}<br>`);
-
-                let dataRow = `<tr><td>${response.listings.listing[i].company.name}</td><td>${response.listings.listing[i].company.location.name}</td><td>${response.listings.listing[i].title}</td><td>${response.listings.listing[i].type.name}</td><td>${response.listings.listing[i].company.tagline}</td><td><button class="bg-info" id="specific-job">Find Out More</button></td></tr>`;
+                let taglineObj = response.listings.listing[i].company.tagline;
+                let tagline;
+                    if(taglineObj === undefined) {
+                        tagline = `<em>None listed</em>`;
+                         
+                    } else {
+                        tagline = taglineObj;
+                    }
+                    
+                let dataRow = `<tr><td>${response.listings.listing[i].company.name}</td><td>${response.listings.listing[i].company.location.name}</td><td>${response.listings.listing[i].title}</td><td>${response.listings.listing[i].type.name}</td><td>${tagline}</td><td><button class="bg-info text-white" id="specific-job">Find Out More!</button></td></tr>`;
 
                 $(`#job-info`).append(dataRow);
         }
