@@ -48,7 +48,9 @@ $(document).ready(function() {
         //$(`#jobs-view`).empty();
 
         //let job = $(this).attr(`data-name`)
-        let queryURL = `https://authenticjobs.com/api/?api_key=25915f6b6bd9671779f4cb0d43be8b66&format=json&method=aj.jobs.getLocations`;
+        let queryURL = `https://api.github.com/?access_token=2d5c338354b50de33dd037057119f477b4d6d73a/orgs/Intel`
+        //`https://authenticjobs.com/api/?api_key=25915f6b6bd9671779f4cb0d43be8b66&format=json&method=aj.jobs.search&category=4&perpage=30`;
+        
                     // Job (aj.jobs.get)
                     // Job Search (aj.jobs.search)  
                     // Companies (aj.jobs.getCompanies)
@@ -60,6 +62,13 @@ $(document).ready(function() {
             method: `GET`
         }).then(function(response) {
             console.log(response);
+            
+            // $(`#company-name`).append(response.listings.listing[9].company.name);
+            // $(`#company-location`).append(response.listings.listing[9].company.location.name);
+            // $(`#job-type`).append(response.listings.listing[9].title);
+            // $(`#job-description`).append(response.listings.listing[9].type.name);
+            // $(`#tagline`).append(response.listings.listing[9].company.tagline);
+            
         }); 
 
     } // Closes displayJobs function
