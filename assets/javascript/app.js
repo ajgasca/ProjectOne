@@ -48,26 +48,37 @@ $(document).ready(function() {
         //$(`#jobs-view`).empty();
 
         //let job = $(this).attr(`data-name`)
-        let queryURL = `https://api.github.com/?access_token=2d5c338354b50de33dd037057119f477b4d6d73a/orgs/Intel`
-        //`https://authenticjobs.com/api/?api_key=25915f6b6bd9671779f4cb0d43be8b66&format=json&method=aj.jobs.search&category=4&perpage=30`;
+        let queryURL = `https://authenticjobs.com/api/?api_key=25915f6b6bd9671779f4cb0d43be8b66&format=json&method=aj.jobs.search&category=3&perpage=30`;
+        //`https://data.usajobs.gov/api/search?JobCategoryCode=2200&Keyword=Web Development`
         
-                    // Job (aj.jobs.get)
-                    // Job Search (aj.jobs.search)  
-                    // Companies (aj.jobs.getCompanies)
-                    // Locations (aj.jobs.getLocations)
+        //`https://api.github.com/?access_token=2d5c338354b50de33dd037057119f477b4d6d73a`
+        //let host = `data.usajobs.gov`;
+        //let userAgent = `ethantatum81@gmail.com`;
+        //let authKey = `h1Z1jDLKTLTCLTiejmf6tA+zXLn1r6tZq9O1nEZZdV4=`
 
         // Creates AJAX call for the specific toon button being clicked
         $.ajax({
             url: queryURL,
             method: `GET`
+            //headers: {
+                //"Host": host,
+                //"User-Agent": userAgent,
+                //"Authorization-Key": authKey
+            //}
         }).then(function(response) {
             console.log(response);
+            for(let i = 0; i < response.listings.listing.length; i++) {
             
-            // $(`#company-name`).append(response.listings.listing[9].company.name);
-            // $(`#company-location`).append(response.listings.listing[9].company.location.name);
-            // $(`#job-type`).append(response.listings.listing[9].title);
-            // $(`#job-description`).append(response.listings.listing[9].type.name);
-            // $(`#tagline`).append(response.listings.listing[9].company.tagline);
+                // $(`#company-name`).append(`${response.listings.listing[i].company.name}<br>`);
+                // $(`#company-location`).append(`${response.listings.listing[i].company.location.name}<br>`);
+                // $(`#job-type`).append(`${response.listings.listing[i].title}<br>`);
+                // $(`#job-description`).append(`${response.listings.listing[i].type.name}<br>`);
+                // $(`#tagline`).append(`${response.listings.listing[i].company.tagline}<br>`);
+
+                let dataRow = `<tr><td>${response.listings.listing[i].company.name}</td><td>${response.listings.listing[i].company.location.name}</td><td>${response.listings.listing[i].title}</td><td>${response.listings.listing[i].type.name}</td><td>${response.listings.listing[i].company.tagline}</td></tr><br>`;
+
+                $(`#job-info`).append(dataRow);
+        }
             
         }); 
 
