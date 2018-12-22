@@ -34,9 +34,10 @@ $(document).ready(function() {
 
         }).then(function(response) {
             console.log(response);
-            //let headerRow = `<th>Company</th><th>Location</th><th>Job Type</th><th>Job Description</th><th>Company Tagline</th>`;
+            if(response.listings.listing.length === 0) {
+                $(`#job-info`).append(`<tr><td>No Part-Time Jobs Available in this Category...Try Selecting Full-Time Jobs or a Different Category!</td></tr>`);
+            } else {
             for(let i = 0; i < response.listings.listing.length; i++) {
-            
                 let taglineObj = response.listings.listing[i].company.tagline;
                 let tagline;
                     if(taglineObj === undefined) {
@@ -45,22 +46,43 @@ $(document).ready(function() {
                     } else {
                         tagline = taglineObj;
                     }
+
+                let locationObj = response.listings.listing[i].company.location;
+                let location;
+                    if(locationObj === undefined) {
+                        location = `<em>Multiple locations available</em>`;
+                         
+                    } else {
+                        location = response.listings.listing[i].company.location.name;
+                    }
                     
-                let dataRow = `<tr><td>${response.listings.listing[i].company.name}</td><td>${response.listings.listing[i].company.location.name}</td><td>${response.listings.listing[i].title}</td><td>${response.listings.listing[i].type.name}</td><td>${tagline}</td><td><button class="bg-info text-white" id="specific-job">Find Out More!</button></td></tr>`;
-                
-                $(`#job-info`).append(dataRow);
-                //$(`#job-info`);
-        }
+            let dataRow = `<tr><td>${response.listings.listing[i].company.name}</td><td>${location}</td><td>${response.listings.listing[i].title}</td><td>${response.listings.listing[i].type.name}</td><td>${tagline}</td><td><button class="bg-info text-white" id="specific-job">Find Out More!</button></td></tr>`;
             
-        });
-
-
-
-
-
-
+            $(`#job-info`).append(dataRow);
+            //$(`#job-info`);
+            }
+        } 
+    });
 
     }); // Closes on-click function
+
+    // Capture 'more info' button click
+    $("#job-info").on("click", ('#specific-job'), function(event) {
+        // Don't refresh the page!
+        event.preventDefault();
+
+        let queryURL = 'https://maps.googleapis.com/maps/api/geocode/json?address=+Mountain+View,+CA&key=AIzaSyCPpsNM_ZFTCJH9aNrS-mWO4D8t_FHDh4k';
+
+        $.ajax({
+            url: queryURL,
+            method: 'GET'
+        }).then(function(response){
+            console.log(response);
+        })
+      
+     }); // Closes 'more info' on-click function
+
+
     
     // Provides initial data to Firebase database
     // database.ref().push({
