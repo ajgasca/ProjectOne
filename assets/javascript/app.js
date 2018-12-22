@@ -17,57 +17,24 @@ $(document).ready(function() {
     $("#add-search").on("click", function(event) {
         // Don't refresh the page!
         event.preventDefault();
+        $(`#job-info`).empty();
         
-        // Stores data for the most recent train
-        let keyword = $(`#keyword-input`).val().trim();
-            // QUESTION????????????????????????????????????????????????????
-            // May need to do a split here to allow for multiple keywords??
-        let location = $(`#location-input`).val().trim();
-        let jobType = $(`#job-input`).val().trim();
-        let company = $(`#company-input`).val().trim();
+        // Captures the values users selected in the form
+        let category = $(`#category-input`).val();
+        console.log(category);
+        let jobType = $(`#job-type-input`).val();
+        console.log(jobType);
         
-        // Provides initial data to Firebase database
-        database.ref().push({
-            keyword: keyword,
-            location: location,
-            jobType: jobType,
-            company: company,
-            dateAdded: firebase.database.ServerValue.TIMESTAMP
-        }); // Closes database.ref.push function
-        
-        $(`#keyword-input`).val(``);
-        $(`#location-input`).val(``);
-        $(`#job-input`).val(``)
-        $(`#company-input`).val(``)
-    }); // Closes on-click function
+        // Create AJAX call based on user inut
+        let queryURL = `https://authenticjobs.com/api/?api_key=25915f6b6bd9671779f4cb0d43be8b66&format=json&method=aj.jobs.search&category=${category}&type=${jobType}&perpage=30`;
 
-
-
-    // displayJobs function re-renders the HTML to display the appropriate content, creates API call
-    function displayJobs() {
-        //$(`#jobs-view`).empty();
-
-        //let job = $(this).attr(`data-name`)
-        let queryURL = `https://authenticjobs.com/api/?api_key=25915f6b6bd9671779f4cb0d43be8b66&format=json&method=aj.jobs.search&category=4&perpage=30`;
-        
-        //`https://data.usajobs.gov/api/search?JobCategoryCode=2200&Keyword=web develop&PositionSchedule=1&WhoMayApply=public&HiringPath=public;graduates&ResultsPerPage=15`
-        
-        //`https://api.github.com/?access_token=2d5c338354b50de33dd037057119f477b4d6d73a`
-        //let host = `data.usajobs.gov`;
-        //let userAgent = `ethantatum81@gmail.com`;
-        //let authKey = `h1Z1jDLKTLTCLTiejmf6tA+zXLn1r6tZq9O1nEZZdV4=` 
-
-        // Creates AJAX call for the specific toon button being clicked
         $.ajax({
             url: queryURL,
-            method: `GET`,
-            //headers: {
-                //"Host": host,
-                //"User-Agent": userAgent,
-                //"Authorization-Key": authKey
-            //}
+            method: `GET`
+
         }).then(function(response) {
             console.log(response);
+            //let headerRow = `<th>Company</th><th>Location</th><th>Job Type</th><th>Job Description</th><th>Company Tagline</th>`;
             for(let i = 0; i < response.listings.listing.length; i++) {
             
                 let taglineObj = response.listings.listing[i].company.tagline;
@@ -80,15 +47,82 @@ $(document).ready(function() {
                     }
                     
                 let dataRow = `<tr><td>${response.listings.listing[i].company.name}</td><td>${response.listings.listing[i].company.location.name}</td><td>${response.listings.listing[i].title}</td><td>${response.listings.listing[i].type.name}</td><td>${tagline}</td><td><button class="bg-info text-white" id="specific-job">Find Out More!</button></td></tr>`;
-
+                
                 $(`#job-info`).append(dataRow);
+                //$(`#job-info`);
         }
             
-        }); 
+        });
 
-    } // Closes displayJobs function
 
-    displayJobs();
+
+
+
+
+
+    }); // Closes on-click function
+    
+    // Provides initial data to Firebase database
+    // database.ref().push({
+    //     keyword: keyword,
+    //     location: location,
+    //     jobType: jobType,
+    //     company: company,
+    //     dateAdded: firebase.database.ServerValue.TIMESTAMP
+    // }); // Closes database.ref.push function
+    
+    // $(`#keyword-input`).val(``);
+    // $(`#location-input`).val(``);
+    // $(`#job-input`).val(``)
+    // $(`#company-input`).val(``)
+
+
+    // displayJobs function re-renders the HTML to display the appropriate content, creates API call
+    // function displayJobs() {
+    //     //$(`#jobs-view`).empty();
+
+    //     //let job = $(this).attr(`data-name`)
+    //     let queryURL = `https://authenticjobs.com/api/?api_key=25915f6b6bd9671779f4cb0d43be8b66&format=json&method=aj.jobs.search&category=4&perpage=30`;
+        
+    //     //`https://data.usajobs.gov/api/search?JobCategoryCode=2200&Keyword=web develop&PositionSchedule=1&WhoMayApply=public&HiringPath=public;graduates&ResultsPerPage=15`
+        
+    //     //`https://api.github.com/?access_token=2d5c338354b50de33dd037057119f477b4d6d73a`
+    //     //let host = `data.usajobs.gov`;
+    //     //let userAgent = `ethantatum81@gmail.com`;
+    //     //let authKey = `h1Z1jDLKTLTCLTiejmf6tA+zXLn1r6tZq9O1nEZZdV4=` 
+
+    //     // Creates AJAX call for the specific toon button being clicked
+    //     $.ajax({
+    //         url: queryURL,
+    //         method: `GET`,
+    //         //headers: {
+    //             //"Host": host,
+    //             //"User-Agent": userAgent,
+    //             //"Authorization-Key": authKey
+    //         //}
+    //     }).then(function(response) {
+    //         console.log(response);
+    //         for(let i = 0; i < response.listings.listing.length; i++) {
+            
+    //             let taglineObj = response.listings.listing[i].company.tagline;
+    //             let tagline;
+    //                 if(taglineObj === undefined) {
+    //                     tagline = `<em>None listed</em>`;
+                         
+    //                 } else {
+    //                     tagline = taglineObj;
+    //                 }
+                    
+    //             let dataRow = `<tr><td>${response.listings.listing[i].company.name}</td><td>${response.listings.listing[i].company.location.name}</td><td>${response.listings.listing[i].title}</td><td>${response.listings.listing[i].type.name}</td><td>${tagline}</td><td><button class="bg-info text-white" id="specific-job">Find Out More!</button></td></tr>`;
+
+    //             $(`#job-info`).append(dataRow);
+    //     }
+            
+    //     }); 
+
+    // } // Closes displayJobs function
+
+    //displayJobs();
 
 
 

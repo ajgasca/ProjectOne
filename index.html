@@ -25,28 +25,24 @@
                         <div class="card-body">
                             <!-- Sign-up Form (note the various input "types")-->
                             <form role="form">
-                            <div class="form-group">
-                                <label for="sel1">Select a job category:</label>
-                                <select class="form-control" id="keyword-input">
-                                    <option id="4">Front-End Development</option>
-                                    <option id="2">Back-End Development</option>
-                                    <option id="3">Design & User Experience</option>
-                                </select>
-                                <!-- <input class="form-control" id="keyword-input" type="text"> -->
-                            </div>
-                            <div class="form-group">
-                                <label for="location-input">Location (City)</label>
-                                <input class="form-control" id="location-input" type="text">
-                            </div>
-                            <div class="form-group">
-                                <label for="job-input">Job Type (full-time, part-time, contract)</label>
-                                <input class="form-control" id="job-input" type="text">
-                            </div>
-                            <div class="form-group">
-                                <label for="company-input">(Optional) Desired Company</label>
-                                <input class="form-control" id="company-input" type="text">
-                            </div>
-                            <button class="btn btn-default bg-primary text-white" id="add-search" type="submit">Find That Job!</button>
+                                <div class="form-group">
+                                    <label for="sel1">Job Categories:</label>
+                                    <select class="form-control" id="category-input">
+                                        <option selected>Choose a job category</option>
+                                        <option value="4">Front-End Development</option>
+                                        <option value="2">Back-End Development</option>
+                                        <option value="3">Design & User Experience</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for=sel1>Job Types</label>
+                                    <select class="form-control" id="job-type-input">
+                                        <option selected>Choose full-time or part-time</option>
+                                        <option value="1">Full-Time</option>
+                                        <option value="5">Part-Time</option>
+                                    </select>
+                                </div>
+                                <button class="btn btn-default bg-primary text-white" id="add-search" type="submit">Find That Job!</button>
                             </form>
                         </div>
                 </div>
@@ -61,13 +57,14 @@
         
                             <table class="container-fluid table table-striped">
                                 <tbody class="flex-container">
-                                    <tr id="job-info">
+                                    <tr id="header-info">
                                         <th scope="col">Company</th>
                                         <th scope="col">Location</th>
                                         <th scope="col">Job Type</th>
                                         <th scope="col">Job Description</th>
                                         <th scope="col">Company Tagline</th>
                                     </tr>
+                                    <tr id="job-info"></tr>
                                 </tbody>
                             </table>
         
