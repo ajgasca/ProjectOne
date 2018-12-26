@@ -35,6 +35,15 @@ $(document).ready(function() {
         }).then(function(response) {
             console.log(response);
             if(response.listings.listing.length === 0) {
+                let modal = $(`<div`);
+                modal.addClass(`modal`).attr(`tabindex`, -1).attr(`role`, `dialog`);
+                let modalDialog = $(`<div`);
+                modalDialog.addClass(`modal-dialog`).attr(`role`, `document`);
+                let modalContent = $(`div`);
+                modalContent.addClass(`modal-content`);
+                let modalHeader = $(`<div>`);
+                modalHeader.addClass(`modal-header`);
+
                 $(`#job-info`).append(`<tr><td>No Part-Time Jobs Available in this Category...Try Selecting Full-Time Jobs or a Different Category!</td></tr>`);
             } else {
             for(let i = 0; i < response.listings.listing.length; i++) {
