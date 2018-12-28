@@ -46,7 +46,7 @@ $(document).ready(function() {
                         tagline = taglineObj;
                     }
                     
-                let dataRow = `<tr><td>${response.listings.listing[i].company.name}</td><td>${response.listings.listing[i].company.location.name}</td><td>${response.listings.listing[i].title}</td><td>${response.listings.listing[i].type.name}</td><td>${tagline}</td><td><button class="bg-info text-white" id="specific-job">Find Out More!</button></td></tr>`;
+                let dataRow = `<tr><td>${response.listings.listing[i].company.name}</td><td id="location-input">${response.listings.listing[i].company.location.name}</td><td>${response.listings.listing[i].title}</td><td>${response.listings.listing[i].type.name}</td><td>${tagline}</td><td><button class="bg-info text-white specific-job" id="${response.listings.listing[i].company.location.city}">Find Out More!</button></td></tr>`;
                 
                 $(`#job-info`).append(dataRow);
                 //$(`#job-info`);
@@ -54,6 +54,28 @@ $(document).ready(function() {
             
         });
 
+
+
+
+     $("#job-info").on("click", ('.specific-job'), function(){
+        let city = $(this).attr('id');
+        console.log(city);
+
+        var image = $(`<img class="map" src='https://maps.googleapis.com/maps/api/staticmap?center=${city}&zoom=10&size=600x300&maptype=roadmap&key=AIzaSyCPpsNM_ZFTCJH9aNrS-mWO4D8t_FHDh4k'>`);
+
+        $('#job-info').append(image);
+
+        //  let queryURL = 'https://maps.googleapis.com/maps/api/staticmap?center=New+York,NY&zoom=13&size=600x300&maptype=roadmap&key=AIzaSyCPpsNM_ZFTCJH9aNrS-mWO4D8t_FHDh4k';
+
+        //  $.ajax({
+        //      url: queryURL,
+        //      method: 'GET'
+        //  }).then(function(response){
+        //      console.log(response);
+        //  })
+        
+     })
+     
 
 
 
@@ -137,4 +159,4 @@ $(document).ready(function() {
 
 
 
-}); // End of document.ready
+});
