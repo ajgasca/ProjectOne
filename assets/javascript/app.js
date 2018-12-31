@@ -84,15 +84,9 @@ $(document).ready(function() {
         let city = $(this).val(`id`);
         console.log(city);
 
-        let queryURL = 'https://maps.googleapis.com/maps/api/staticmap?center=Waco&key=AIzaSyCPpsNM_ZFTCJH9aNrS-mWO4D8t_FHDh4k';
+        let image = $(`<img class="map" src='https://maps.googleapis.com/maps/api/staticmap?center=${city}&zoom=10&size=600x300&maptype=roadmap&key=AIzaSyCPpsNM_ZFTCJH9aNrS-mWO4D8t_FHDh4k'>`);
 
-        $.ajax({
-            url: queryURL,
-            method: 'GET'
-        }).then(function(response){
-            console.log(response);
-        })
-        $(`#specificModal`).attr(`data-toggle`, `modal`);
+        $(`#job-info`).append(image);
      }); // Closes 'more info' on-click function
 
 
