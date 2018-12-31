@@ -56,10 +56,11 @@ $(document).ready(function() {
                         location = response.listings.listing[i].company.location.name;
                     }
                     
-            let dataRow = `<tr><td>${response.listings.listing[i].company.name}</td><td>${location}</td><td>${response.listings.listing[i].title}</td><td>${response.listings.listing[i].type.name}</td><td>${tagline}</td><td><button class="bg-info text-white" id="specific-job">Find Out More!</button></td></tr>`;
-            
-            $(`#job-info`).append(dataRow);
-            //$(`#job-info`);
+
+                let dataRow = `<tr><td>${response.listings.listing[i].company.name}</td><td id="location-input">${location}</td><td>${response.listings.listing[i].title}</td><td>${response.listings.listing[i].type.name}</td><td>${tagline}</td><td><button class="bg-info text-white specific-job" id="${response.listings.listing[i].company.location.city}">Find Out More!</button></td></tr>`;
+                
+                $(`#job-info`).append(dataRow);
+                //$(`#job-info`);
             }
         } 
     });
@@ -67,19 +68,17 @@ $(document).ready(function() {
     }); // Closes on-click function
 
     // Capture 'more info' button click
-    $("#job-info").on("click", ('#specific-job'), function(event) {
+    $("#job-info").on("click", ('.specific-job'), function(event) {
         // Don't refresh the page!
         event.preventDefault();
 
-        let queryURL = 'https://maps.googleapis.com/maps/api/geocode/json?address=+Mountain+View,+CA&key=AIzaSyCPpsNM_ZFTCJH9aNrS-mWO4D8t_FHDh4k';
+        let city = $(this).attr('id');
+        console.log(city);
 
-        $.ajax({
-            url: queryURL,
-            method: 'GET'
-        }).then(function(response){
-            console.log(response);
-        })
-      
+        var image = $(`<img class="map" src='https://maps.googleapis.com/maps/api/staticmap?center=${city}&zoom=10&size=600x300&maptype=roadmap&key=AIzaSyCPpsNM_ZFTCJH9aNrS-mWO4D8t_FHDh4k'>`);
+
+        $('#job-info').append(image);
+
      }); // Closes 'more info' on-click function
 
 
@@ -159,4 +158,4 @@ $(document).ready(function() {
 
 
 
-}); // End of document.ready
+});
