@@ -35,17 +35,9 @@ $(document).ready(function() {
         }).then(function(response) {
             console.log(response);
             if(response.listings.listing.length === 0) {
-                // let modal = $(`<div`);
-                // modal.addClass(`modal`).attr(`tabindex`, -1).attr(`role`, `dialog`);
-                // let modalDialog = $(`<div`);
-                // modalDialog.addClass(`modal-dialog`).attr(`role`, `document`);
-                // let modalContent = $(`div`);
-                // modalContent.addClass(`modal-content`);
-                // let modalHeader = $(`<div>`);
-                // modalHeader.addClass(`modal-header`);
 
                 // $(`#job-info`).append(`<tr><td>No Part-Time Jobs Available in this Category...Try Selecting Full-Time Jobs or a Different Category!</td></tr>`);
-                $(`#exampleModal`).attr(`data-toggle`, `modal`);
+                $(`#exampleModal`).modal(`toggle`);
             } else {
             for(let i = 0; i < response.listings.listing.length; i++) {
                 let taglineObj = response.listings.listing[i].company.tagline;
@@ -66,10 +58,9 @@ $(document).ready(function() {
                         location = response.listings.listing[i].company.location.name;
                     }
                     
-            let dataRow = `<tr><td>${response.listings.listing[i].company.name}</td><td>${location}</td><td>${response.listings.listing[i].title}</td><td>${response.listings.listing[i].type.name}</td><td>${tagline}</td><td><button class="bg-info text-white specific-job" id="${response.listings.listing[i].company.location.city}">Find Out More!</button></td></tr>`;
+            let dataRow = `<tr><td>${response.listings.listing[i].company.name}</td><td>${location}</td><td>${response.listings.listing[i].title}</td><td>${response.listings.listing[i].type.name}</td><td>${tagline}</td><td><button class="bg-info text-white specific-job" id="${response.listings.listing[i].company.location.name}" data-toggle="modal" data-target="#specificModal">Find Out More!</button></td></tr>`;
             
             $(`#job-info`).append(dataRow);
-            //$(`#job-info`);
             }
         } 
     });
@@ -84,9 +75,11 @@ $(document).ready(function() {
         let city = $(this).val(`id`);
         console.log(city);
 
+        $(`#specificModal`).modal(`toggle`);
+
         let image = $(`<img class="map" src='https://maps.googleapis.com/maps/api/staticmap?center=${city}&zoom=10&size=600x300&maptype=roadmap&key=AIzaSyCPpsNM_ZFTCJH9aNrS-mWO4D8t_FHDh4k'>`);
 
-        $(`#job-info`).append(image);
+        $(`#localMap`).append(image);
      }); // Closes 'more info' on-click function
 
 
