@@ -34,9 +34,12 @@ $(document).ready(function() {
 
         }).then(function(response) {
             console.log(response);
-            //let headerRow = `<th>Company</th><th>Location</th><th>Job Type</th><th>Job Description</th><th>Company Tagline</th>`;
+            if(response.listings.listing.length === 0) {
+
+                // $(`#job-info`).append(`<tr><td>No Part-Time Jobs Available in this Category...Try Selecting Full-Time Jobs or a Different Category!</td></tr>`);
+                $(`#exampleModal`).modal(`toggle`);
+            } else {
             for(let i = 0; i < response.listings.listing.length; i++) {
-            
                 let taglineObj = response.listings.listing[i].company.tagline;
                 let tagline;
                     if(taglineObj === undefined) {
@@ -45,26 +48,53 @@ $(document).ready(function() {
                     } else {
                         tagline = taglineObj;
                     }
+
+                let locationObj = response.listings.listing[i].company.location;
+                let location;
+                    if(locationObj === undefined) {
+                        location = `<em>Multiple locations available</em>`;
+                         
+                    } else {
+                        location = response.listings.listing[i].company.location.name;
+                    }
                     
+<<<<<<< HEAD
                 let dataRow = `<tr><td>${response.listings.listing[i].company.name}</td><td id="location-input">${response.listings.listing[i].company.location.name}</td><td>${response.listings.listing[i].title}</td><td>${response.listings.listing[i].type.name}</td><td>${tagline}</td><td><button class="bg-info text-white specific-job" data-target="#infoModal" data-toggle="modal" id="${response.listings.listing[i].company.location.city}">Find Out More!</button></td></tr>`;
                
                 
                 $(`#job-info`).append(dataRow);
                 //$(`#job-info`);
         }
+=======
+            let dataRow = `<tr><td>${response.listings.listing[i].company.name}</td><td>${location}</td><td>${response.listings.listing[i].title}</td><td>${response.listings.listing[i].type.name}</td><td>${tagline}</td><td><button class="bg-info text-white specific-job" id="${response.listings.listing[i].company.location.name}" data-toggle="modal" data-target="#specificModal">Find Out More!</button></td></tr>`;
+>>>>>>> b348a601bbb89d055b2df48dd777d340499d2562
             
-        });
+            $(`#job-info`).append(dataRow);
+            }
+        } 
+    });
 
-
+<<<<<<< HEAD
         // location on click 
      $("#job-info").on("click", ('.specific-job'), function(){
         let city = $(this).attr('id');
+=======
+    }); // Closes on-click function
+
+    // Capture 'more info' button click
+    $("#job-info").on("click", ('.specific-job'), function(event) {
+        // Don't refresh the page!
+        event.preventDefault();
+
+        let city = $(this).val(`id`);
+>>>>>>> b348a601bbb89d055b2df48dd777d340499d2562
         console.log(city);
         
        
        
 
 
+<<<<<<< HEAD
         var image = $(`<img class="map" src='https://maps.googleapis.com/maps/api/staticmap?center=${city}&zoom=10&size=600x300&maptype=roadmap&key=AIzaSyCPpsNM_ZFTCJH9aNrS-mWO4D8t_FHDh4k'>`);
 
        $('#job-info').append(image);
@@ -82,12 +112,16 @@ $(document).ready(function() {
      })
      
 
+=======
+        $(`#specificModal`).modal(`toggle`);
+>>>>>>> b348a601bbb89d055b2df48dd777d340499d2562
+
+        let image = $(`<img class="map" src='https://maps.googleapis.com/maps/api/staticmap?center=${city}&zoom=10&size=600x300&maptype=roadmap&key=AIzaSyCPpsNM_ZFTCJH9aNrS-mWO4D8t_FHDh4k'>`);
+
+        $(`#localMap`).append(image);
+     }); // Closes 'more info' on-click function
 
 
-
-
-
-    }); // Closes on-click function
     
     // Provides initial data to Firebase database
     // database.ref().push({

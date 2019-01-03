@@ -70,6 +70,50 @@
             </div>
         </div>
     </div>
+
+    <!-- #exampleModal - Modal in the event of no part-time jobs in given category -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">We're Sorry!</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+                No Part-Time Jobs Available in this Category...Try Selecting Full-Time Jobs or a Different Category!
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+    </div>
+    <!-- End of #exampleModal -->
+
+    <!-- #specificModal - Modal that opens when user clicks on specific job -->
+    <div class="modal fade" id="specificModal" tabindex="-1" role="dialog" aria-labelledby="specificModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="specificModalLabel">Learn More!</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+                <div id="localMap"></div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary">Apply Now</button>
+            </div>
+          </div>
+        </div>
+    </div>
+    <!-- End of #specificModal -->
+
     <div class="container-fluid mb-5">
         <div class="row">
                 <div class="col-lg-12">
@@ -94,6 +138,13 @@
                 </div>
             </div>
 
+<<<<<<< HEAD
+=======
+
+
+
+
+>>>>>>> b348a601bbb89d055b2df48dd777d340499d2562
     </div>
 
 <!-- Button trigger modal -->
@@ -105,6 +156,11 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <!-- Firebase -->
     <script src="https://www.gstatic.com/firebasejs/5.7.0/firebase.js"></script>
+    <!-- Popper -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+
     <!-- Local JS file -->
     <script src="assets/javascript/app.js"></script>   
 </body>
