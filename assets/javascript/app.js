@@ -1,4 +1,4 @@
-$(document).ready(function () {
+$(document).ready(function() {
     // Initialize Firebase
     var config = {
         apiKey: "AIzaSyAtiM8ykyB5bJ1ObRUcb21xNGYkmAQskb4",
@@ -7,21 +7,21 @@ $(document).ready(function () {
         projectId: "projectone-10330",
         storageBucket: "projectone-10330.appspot.com",
         messagingSenderId: "156042357943"
-    };
-    firebase.initializeApp(config);
+      };
+      firebase.initializeApp(config);
 
     // Capture Button Click
-    $("#add-search").on("click", function (event) {
+    $("#add-search").on("click", function(event) {
         // Don't refresh the page!
         event.preventDefault();
         $(`#job-info`).empty();
-
+        
         // Captures the values users selected in the form
         let category = $(`#category-input`).val();
         console.log(category);
         let jobType = $(`#job-type-input`).val();
         console.log(jobType);
-
+        
         // Create AJAX call based on user input
         let queryURL = `https://authenticjobs.com/api/?api_key=25915f6b6bd9671779f4cb0d43be8b66&format=json&method=aj.jobs.search&category=${category}&type=${jobType}&perpage=30`;
 
@@ -29,72 +29,47 @@ $(document).ready(function () {
             url: queryURL,
             method: `GET`
 
-        }).then(function (response) {
+        }).then(function(response) {
             console.log(response);
-            if (response.listings.listing.length === 0) {
+            if(response.listings.listing.length === 0) {
 
                 // $(`#job-info`).append(`<tr><td>No Part-Time Jobs Available in this Category...Try Selecting Full-Time Jobs or a Different Category!</td></tr>`);
                 $(`#exampleModal`).modal(`toggle`);
             } else {
-                for (let i = 0; i < response.listings.listing.length; i++) {
-                    let taglineObj = response.listings.listing[i].company.tagline;
-                    let tagline;
-                    if (taglineObj === undefined) {
+            for(let i = 0; i < response.listings.listing.length; i++) {
+                let taglineObj = response.listings.listing[i].company.tagline;
+                let tagline;
+                    if(taglineObj === undefined) {
                         tagline = `<em>None listed</em>`;
-
+                         
                     } else {
                         tagline = taglineObj;
                     }
 
-                    let locationObj = response.listings.listing[i].company.location;
-                    let location;
-                    if (locationObj === undefined) {
+                let locationObj = response.listings.listing[i].company.location;
+                let location;
+                    if(locationObj === undefined) {
                         location = `<em>Multiple locations available</em>`;
-
+                         
                     } else {
                         location = response.listings.listing[i].company.location.name;
                     }
-
-
-                    let dataRow = `<tr><td>${response.listings.listing[i].company.name}</td><td id="location-input">${response.listings.listing[i].company.location.name}</td><td>${response.listings.listing[i].title}</td><td>${response.listings.listing[i].type.name}</td><td>${tagline}</td><td><button class="bg-info text-white specific-job" data-target="#infoModal" data-toggle="modal" id="${response.listings.listing[i].company.location.city}">Find Out More!</button></td></tr>`;
-
-
-                    $(`#job-info`).append(dataRow);
-                    //$(`#job-info`);
-                }
-
-                let dataRow = `<tr><td>${response.listings.listing[i].company.name}</td><td>${location}</td><td>${response.listings.listing[i].title}</td><td>${response.listings.listing[i].type.name}</td><td>${tagline}</td><td><button class="bg-info text-white specific-job" id="${response.listings.listing[i].company.location.name}" data-toggle="modal" data-target="#specificModal">Find Out More!</button></td></tr>`;
-
-                let dataRow = `<tr><td>${response.listings.listing[i].company.name}</td><td>${location}</td><td>${response.listings.listing[i].title}</td><td>${response.listings.listing[i].type.name}</td><td>${tagline}</td><td><button class="bg-info text-white specific-job" id="${response.listings.listing[i].company.location.name}" data-toggle="modal" data-target="#specificModal" lat="${response.listings.listing[i].company.location.lat}" lng="${response.listings.listing[i].company.location.lng}" url="${response.listings.listing[i].apply_url}">Find Out More!</button></td></tr>`;
-
-
-                $(`#job-info`).append(dataRow);
+                    
+            let dataRow = `<tr><td>${response.listings.listing[i].company.name}</td><td>${location}</td><td>${response.listings.listing[i].title}</td><td>${response.listings.listing[i].type.name}</td><td>${tagline}</td><td><button class="bg-info text-white specific-job" id="${response.listings.listing[i].company.location.name}" data-toggle="modal" data-target="#specificModal" lat="${response.listings.listing[i].company.location.lat}" lng="${response.listings.listing[i].company.location.lng}" url="${response.listings.listing[i].apply_url}">Find Out More!</button></td></tr>`;
+            
+            $(`#job-info`).append(dataRow);
             }
         } 
     });
 
-
-    // location on click 
-    $("#job-info").on("click", ('.specific-job'), function () {
-        let city = $(this).attr('id');
-
     }); // Closes on-click function
 
     // Capture 'more info' button click
-    $("#job-info").on("click", ('.specific-job'), function (event) {
+    $("#job-info").on("click", ('.specific-job'), function(event) {
         // Don't refresh the page!
         event.preventDefault();
         $(`#localMap`).empty();
         $(`#meetUps`).empty();
-
-
-        let city = $(this).val(`id`);
-
-        console.log(city);
-
-
-
-
 
         let city = $(this).attr(`id`);
         console.log(city);
@@ -102,9 +77,7 @@ $(document).ready(function () {
         let lngPointer = $(this).attr(`lng`);
         let applyURL = $(this).attr(`url`);
 
-
         $(`#specificModal`).modal(`toggle`);
-
 
         let image = $(`<img class="map" src='https://maps.googleapis.com/maps/api/staticmap?center=${city}&markers=color:red%7C${latPointer},${lngPointer}&zoom=11&size=400x150&maptype=roadmap&key=AIzaSyCPpsNM_ZFTCJH9aNrS-mWO4D8t_FHDh4k'>`);
 
@@ -118,29 +91,29 @@ $(document).ready(function () {
             url: meetURL,
             method: `GET`
 
-        }).then(function (response) {
+        }).then(function(response) {
             console.log(response);
 
-            for (let j = 0; j < response.length; j++) {
-                let groupName = response[j].name;
-                let groupURL = response[j].link;
-                console.log(groupName);
-                console.log(groupURL);
+        for(let j = 0; j < response.length; j++) {
+            let groupName = response[j].name;
+            let groupURL = response[j].link;
+            console.log(groupName);
+            console.log(groupURL);
 
-                let nameDiv = $(`<a href='${groupURL}' target='_blank'>${groupName}<br></a>`);
-                $(`#meetUps`).append(nameDiv);
-
-            }
+            let nameDiv = $(`<a href='${groupURL}' target='_blank'>${groupName}<br></a>`);
+            $(`#meetUps`).append(nameDiv);
+            
+        }
 
         });
 
-    }); // Closes 'more info' on-click function
+     }); // Closes 'more info' on-click function
 
 
 
 
-    // Capture 'apply later' button click
-    $(document).on("click", ('#apply-later'), function (event) {
+     // Capture 'apply later' button click
+     $(document).on("click", ('#apply-later'), function(event) {
         // Don't refresh the page!
         event.preventDefault();
 
@@ -156,9 +129,9 @@ $(document).ready(function () {
             dateAdded: firebase.database.ServerValue.TIMESTAMP
         }); // Closes database.ref.push function
 
-    }); // Closes 'apply later' on-click function
-
-
-
+     }); // Closes 'apply later' on-click function
+    
+    
+    
 
 }); // Closes 'document ready' function
