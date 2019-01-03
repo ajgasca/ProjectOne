@@ -104,10 +104,13 @@
             </div>
             <div class="modal-body">
                 <div id="localMap"></div>
+                <h3>Local Meet Ups to Discover</h3>
+                <div id="meetUps"></div>
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary">Apply Now</button>
+              <button type="button" class="btn btn-primary" data-dismiss="modal" id="apply-later">Apply Later</button>
+              <a id="specificURL" target="_blank"><button type="button" class="btn btn-warning">Apply Now</button></a>
             </div>
           </div>
         </div>
@@ -130,7 +133,6 @@
                                         <th scope="col">Company Tagline</th>
                                     </tr>
                                     <tr id="job-info"></tr>
-                                    <tr id="map"></tr>
                                 </tbody>
                             </table>
         
@@ -138,13 +140,10 @@
                 </div>
             </div>
 
-<<<<<<< HEAD
-=======
 
 
 
 
->>>>>>> b348a601bbb89d055b2df48dd777d340499d2562
     </div>
 
 <!-- Button trigger modal -->
