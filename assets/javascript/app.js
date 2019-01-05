@@ -94,6 +94,7 @@ $(document).ready(function() {
             let image = $(`<img class="map" src='https://maps.googleapis.com/maps/api/staticmap?center=${city}&markers=color:red%7C${latPointer},${lngPointer}&zoom=11&size=400x150&maptype=roadmap&key=AIzaSyCPpsNM_ZFTCJH9aNrS-mWO4D8t_FHDh4k'>`);
 
             $(`#localMap`).append(image);
+            $(`#city-name`).text(city);
             $(`#specificURL`).attr(`href`, applyURL);
 
             // Create AJAX call based on user input
