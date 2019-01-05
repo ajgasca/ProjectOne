@@ -46,11 +46,14 @@ $(document).ready(function() {
                     }
 
                 let locationObj = response.listings.listing[i].company.location;
+                let locationObjName = response.listings.listing[i].company.location.name
                 let location;
                     if(locationObj === undefined) {
                         location = `<em>Multiple locations available</em>`;
                         jobButton = `<button class="bg-info text-white specific-job" id="no-location" data-toggle="modal" data-target="#noLocationModal" url="${response.listings.listing[i].apply_url}">Find Out More!</button>`;
-                         
+                    } else if(locationObjName == `Anywhere, "Canada Preferred"` || locationObjName == `Anywhere in the US` || locationObjName == `Indianapolis preferred` || locationObjName == `Anywhere in the UK`) {
+                        location = response.listings.listing[i].company.location.name;
+                        jobButton = `<button class="bg-info text-white specific-job" id="no-location" data-toggle="modal" data-target="#noLocationModal" url="${response.listings.listing[i].apply_url}">Find Out More!</button>`;
                     } else {
                         location = response.listings.listing[i].company.location.name;
                         jobButton = `<button class="bg-info text-white specific-job" id="${response.listings.listing[i].company.location.name}" data-toggle="modal" data-target="#specificModal" lat="${response.listings.listing[i].company.location.lat}" lng="${response.listings.listing[i].company.location.lng}" url="${response.listings.listing[i].apply_url}">Find Out More!</button>`;
@@ -77,8 +80,9 @@ $(document).ready(function() {
         
         if(city === `no-location`) {
             let applyURL = $(this).attr(`url`);
-            $(`#specificURL`).attr(`href`, applyURL);
+            console.log(applyURL);
             $(`#noLocationModal`).modal(`toggle`);
+            $(`#genericURL`).attr(`href`, applyURL);
 
         } else {
             let latPointer = $(this).attr('lat');
