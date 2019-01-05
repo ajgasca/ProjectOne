@@ -44,3 +44,6 @@ td {
 .job-design {
     padding-right: 5px;
 }
+.col-lg-12 {
+    animation-delay: 1s;
+}
