@@ -38,9 +38,6 @@ td {
 #add-search {
     color: #00a275;
 }
-.container {
-    animation-delay: 1s;
-  }
 .col-lg-12 {
-    animation-delay: 2s;
+    animation-delay: 1s;
 }
