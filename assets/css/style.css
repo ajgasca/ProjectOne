@@ -1,5 +1,5 @@
 .jumbotron {
-    background-image: url(../images/aerial.jpeg);
+    background-image: url(../images/traveler.jpg);
     background-size: 100%;
     background-position: center;
     background-repeat: no-repeat;
@@ -46,4 +46,19 @@ td {
 }
 .col-lg-12 {
     animation-delay: 1s;
+}
+.specific-job {
+    border-radius: 5px;
+    border-style: groove;
+}
+.modal-body {
+    font-family: 'Oswald', sans-serif;
+    text-align: center;
+}
+.modal-header {
+    font-family: 'Ubuntu', sans-serif;
+    text-align: center;
+}
+#localMap {
+    position: center;
 }
