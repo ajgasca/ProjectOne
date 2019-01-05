@@ -1,7 +1,40 @@
-.flex-container {
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: space-between;
-    align-items: flex-start;
+.jumbotron {
+    background-image: url(../images/aerial.jpeg);
+    background-size: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
 }
-
+.navbar-brand {
+    font-family: 'Staatliches', cursive;
+}
+.title {
+    font-family: 'Staatliches', cursive;
+    color: white;
+    font-size: 50px;
+    text-align: center;
+}
+.subtitle {
+    font-family: 'Ubuntu', sans-serif;
+    color: white;
+    text-align: center;
+    font-size: 30px;
+}
+.nav-link {
+    font-family: 'Carrois Gothic SC', sans-serif;
+}
+.card-header {
+    font-family: 'Ubuntu', sans-serif;
+}
+.headers {
+    font-family: 'Carrois Gothic SC', sans-serif;
+}
+.form-control {
+    font-family: 'Oswald', sans-serif;
+}
+td {
+    font-family: 'Oswald', sans-serif;
+}
+#add-search {
+    color: #00a275;
+}
