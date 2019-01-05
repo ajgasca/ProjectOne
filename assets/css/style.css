@@ -38,3 +38,12 @@ td {
 #add-search {
     color: #00a275;
 }
+.fa-file-code {
+    padding-right: 5px;
+}
+.fa-code-branch, .fa-briefcase {
+    padding-left: 10px;
+}
+.job-design {
+    padding-right: 5px;
+}
