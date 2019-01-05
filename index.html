@@ -82,7 +82,7 @@
               </button>
             </div>
             <div class="modal-body">
-                No Part-Time Jobs Available in this Category...Try Selecting Full-Time Jobs or a Different Category!
+                Uh-Oh - No Jobs Available in this Category...Try Selecting a Different Job Type or Category!
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -116,6 +116,29 @@
         </div>
     </div>
     <!-- End of #specificModal -->
+
+    <!-- #noLocationModal - Modal that opens when user clicks on specific job with no location given-->
+    <div class="modal fade" id="noLocationModal" tabindex="-1" role="dialog" aria-labelledby="noLocationModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="specificModalLabel">Location Is Up To You!</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+                <img id="no-location-image" src="assets/images/workplace-anywhere.png"></img>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary" data-dismiss="modal" id="apply-later">Apply Later</button>
+              <a id="genericURL" target="_blank"><button type="button" class="btn btn-warning">Apply Now</button></a>
+            </div>
+          </div>
+        </div>
+    </div>
+    <!-- End of #noLocationModal -->
 
     <div class="container-fluid mb-5">
         <div class="row">
