@@ -33,7 +33,6 @@
 
 #### Due to time constraints, we were unable to write the code for pulling saved application URLs from Firebase. _**Improvement** We have a dummy link at the top of the page for "My Jobs" - ideally users would be able to click that link and be shown a list of their saved job links._
 
-## **GITHUB!** 
-#### It was a definite challenge understanding the nuances of Git pushes and pulls from the different branches - we were often hesitant to try to commit to the remote repository out of fear of messing something up. 
+## **GITHUB!** #### It was a definite challenge understanding the nuances of Git pushes and pulls from the different branches - we were often hesitant to try to commit to the remote repository out of fear of messing something up. 
 
 ### Overall, we are proud of the app and the way it turned out - there is plenty of room for improvements, but we believe it has potential going forward as a valuable tool to those looking to begin a career in the web development arena.
