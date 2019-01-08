@@ -2,7 +2,7 @@
 ### Team Members: Anthony Gasca, Ethan Tatum, Jose Chaparro
 
 # Technify
-### A tech job search app that focuses on local networking opportunities
+[A tech job search app that focuses on local networking opportunities](https://ajgasca.github.io/ProjectOne/ "Technify Job Search")
 
 ## Overview
 #### This app allows users to search for full and part-time jobs in different web development categories (front end, back end, and project design/user experience). _**NOTE:** The API used in this app requires the user to have the Chrome extension "Allow Control, Allow Origin" enabled._
